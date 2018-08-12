@@ -1,6 +1,7 @@
 # Table of Contents
 
 - [Scheduled](#scheduled)
+    - [0.14.1](#0141)
 - [Released](#released)
     - [0.14.0](#0140---20180705)
     - [0.13.1](#0131---20180423)
@@ -24,7 +25,45 @@
 This section describes upcoming releases that have a release date, along with
 a detailed changeset of their content.
 
-*No scheduled releases yet.*
+## [0.14.1]
+
+> Planned on: second half of August
+
+### Fixes
+
+##### Core
+
+- Fix an issue which, in some cases, prevented the use of Kong with Cassandra
+  in environments where DNS load-balancing is in effect for contact points
+  provided as hostnames (e.g. Kubernetes with `cassandra_contact_points =
+  cassandra`).
+  [#3693](https://github.com/Kong/kong/pull/3693)
+- Fix an issue which prevented the use of unix domain sockets in some logging
+  plugins, and custom plugins making use of such sockets.
+  Thanks [@rucciva](https://github.com/rucciva) for the patch.
+  [#3633](https://github.com/Kong/kong/pull/3633)
+- Avoid logging false-negative error messages related to worker events.
+  [#3692](https://github.com/Kong/kong/pull/3692)
+
+##### CLI
+
+- Database connectivity errors are properly prefixed with the database name
+  again (e.g. `[postgres]`).
+  [#3648](https://github.com/Kong/kong/pull/3648)
+
+##### Plugins
+
+- basic-auth: Passwords with whitespaces are not trimmed anymore.
+  Thanks [@aloisbarreras](https://github.com/aloisbarreras) for the patch.
+  [#3650](https://github.com/Kong/kong/pull/3650)
+- ldap-auth: Set the WWW-Authenticate header authentication scheme accordingly
+  with the `conf.header_type` property, which allows browsers to show the
+  authentication popup automatically.
+  Thanks [@francois-maillard](https://github.com/francois-maillard) for the
+  patch.
+  [#3656](https://github.com/Kong/kong/pull/3656)
+
+[Back to TOC](#table-of-contents)
 
 # Released
 
@@ -2783,6 +2822,7 @@ First version running with Cassandra.
 
 [Back to TOC](#table-of-contents)
 
+[0.14.1]: https://github.com/Kong/kong/compare/0.14.0...master
 [0.14.0]: https://github.com/Kong/kong/compare/0.13.1...0.14.0
 [0.13.1]: https://github.com/Kong/kong/compare/0.13.0...0.13.1
 [0.13.0]: https://github.com/Kong/kong/compare/0.12.3...0.13.0
